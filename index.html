@@ -5,46 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manisha Mhatre | Freelance Professional</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Reset & body */
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Roboto', sans-serif; line-height:1.6; color:#333; background:#f5f5f5; scroll-behavior: smooth; }
-
-    /* Navigation */
+    body { font-family:'Roboto', sans-serif; line-height:1.6; color:#333; background:#f5f5f5; scroll-behavior:smooth; }
     nav { position:fixed; top:0; width:100%; background:#fff; padding:10px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); z-index:1000; }
     nav ul { list-style:none; display:flex; justify-content:center; gap:40px; margin:0; padding:0; }
     nav ul li a { text-decoration:none; color:#6a0dad; font-weight:700; transition:0.3s; }
     nav ul li a:hover { color:#4b0082; }
-
-    /* Header */
     header { background:#6a0dad; color:#fff; padding:100px 20px 60px; text-align:center; }
     header img { width:120px; margin-bottom:20px; }
     header h1 { font-size:2.8rem; margin-bottom:10px; }
     header p { font-size:1.2rem; }
-
-    /* Sections */
     section { padding:80px 20px; max-width:1100px; margin:0 auto; }
     h2 { text-align:center; margin-bottom:50px; color:#6a0dad; font-size:2rem; }
-
-    /* Services */
     .services { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; }
     .service-card { background:#fff; padding:30px; border-radius:12px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s; }
     .service-card:hover { transform:translateY(-8px); box-shadow:0 8px 25px rgba(0,0,0,0.15); }
     .service-card i { font-size:2.5rem; color:#6a0dad; margin-bottom:15px; }
     .service-card h3 { margin-bottom:15px; color:#6a0dad; }
     .service-card p { font-size:0.95rem; }
-
-    /* Contact Form */
     form { background:#fff; padding:40px; border-radius:12px; max-width:600px; margin:0 auto; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
     form label { display:block; margin-bottom:8px; font-weight:700; }
     form input, form textarea { width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:8px; }
     form button { background:#6a0dad; color:#fff; padding:15px 25px; border:none; border-radius:8px; cursor:pointer; font-size:1rem; transition:0.3s; }
     form button:hover { background:#4b0082; }
-
-    /* Footer */
     footer { background:#333; color:#fff; text-align:center; padding:25px 20px; margin-top:50px; }
-
     @media(max-width:600px){
       header h1 { font-size:2rem; }
       header p { font-size:1rem; }
@@ -64,7 +50,7 @@
 
   <!-- Header / Logo -->
   <header>
-   <img src="manisha-logo.png" class="logo" alt="Manisha Mhatre Logo">
+    <img src="manisha-logo.png" class="logo" alt="Manisha Mhatre Logo">
     <h1>Manisha Mhatre</h1>
     <p>Freelance SQL, .NET & Data Analysis Professional</p>
   </header>
@@ -101,13 +87,13 @@
     <h2>Contact Me</h2>
     <form id="contactForm">
       <label for="name">Name:</label>
-      <input type="text" name="name" id="name" required>
+      <input type="text" name="name" id="name" required placeholder="Your Name">
 
       <label for="email">Email:</label>
-      <input type="email" name="email" id="email" required>
+      <input type="email" name="email" id="email" required placeholder="Your Email">
 
       <label for="message">Message:</label>
-      <textarea name="message" id="message" rows="5" required></textarea>
+      <textarea name="message" id="message" rows="5" required placeholder="Your Message"></textarea>
 
       <button type="submit">Send Message</button>
     </form>
@@ -121,13 +107,11 @@
   <!-- EmailJS Integration -->
   <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
   <script>
-    // Initialize EmailJS
-    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
-
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
+    // EmailJS Integration without User ID
+    document.getElementById("contactForm").addEventListener("submit", function(event){
       event.preventDefault();
 
-      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+      emailjs.sendForm('service_b0lr72e', '__ejs-test-mail-service__', this)
         .then(function() {
           alert("Message sent successfully to Manisha.mhatre2015@gmail.com!");
           document.getElementById("contactForm").reset();
