@@ -111,7 +111,7 @@
     document.getElementById("contactForm").addEventListener("submit", function(event){
       event.preventDefault();
 
-      emailjs.sendForm('service_b0lr72e', '__ejs-test-mail-service__', this)
+      emailjs.sendForm('service_b0lr72e', '__ejs-test-mail-service__, this)
         .then(function() {
           alert("Message sent successfully to Manisha.mhatre2015@gmail.com!");
           document.getElementById("contactForm").reset();
@@ -123,3 +123,4 @@
 
 </body>
 </html>
+
