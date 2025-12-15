@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manisha Mhatre | Freelance Professional</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Full URL added to Google Fonts link -->
+  <link href="fonts.googleapis.com" rel="stylesheet">
+  <!-- Full URL added to Font Awesome link -->
+  <link rel="stylesheet" href="cdnjs.cloudflare.com">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Roboto', sans-serif; line-height:1.6; color:#333; background:#f5f5f5; scroll-behavior:smooth; }
@@ -50,7 +53,8 @@
 
   <!-- Header / Logo -->
   <header>
-    <img src="manisha-logo.png" class="logo" alt="Manisha Mhatre Logo">
+    <!-- Full URL added to Image Source -->
+    <img src="i.ibb.co" alt="Manisha Mhatre Logo">
     <h1>Manisha Mhatre</h1>
     <p>Freelance SQL, .NET & Data Analysis Professional</p>
   </header>
@@ -62,12 +66,12 @@
       <div class="service-card">
         <i class="fas fa-code"></i>
         <h3>Web & Database Development</h3>
-        <p>.NET MVC web apps,API, SQL Server development, Deployment, database design, and optimization.</p>
+        <p>.NET MVC web apps, SQL Server development, database design, and optimization.</p>
       </div>
       <div class="service-card">
         <i class="fas fa-chart-line"></i>
         <h3>Data Analysis & Reporting</h3>
-        <p>Power BI dashboards, advanced Excel solutions, and professional reporting.</p>
+        <p>Power BI dashboards, advanced Excel solutions, SAS analytics, and professional reporting.</p>
       </div>
       <div class="service-card">
         <i class="fas fa-tools"></i>
@@ -85,8 +89,8 @@
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Me</h2>
-   
-    <form id="contactForm">
+    <!-- Action URL is correct, method="POST" is present -->
+    <form action="https://formsubmit.co/82c26ed9347fd56f7277d6b92512bd09" method="POST">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required placeholder="Your Name">
 
@@ -94,9 +98,13 @@
       <input type="email" name="email" id="email" required placeholder="Your Email">
 
       <label for="message">Message:</label>
-      <textarea name="message" id="message" rows="5" required placeholder="Your Message"></textarea>
-
-      <button type="submit">Send Message</button>
+      <textarea name="message" id="message" rows="5" required placeholder="message"></textarea>      
+     
+     
+      
+      <input type="hidden" name="_captcha" value="false">
+      
+      <button type="submit" button ID="btnsubmit">Send</button>
     </form>
   </section>
 
@@ -104,26 +112,48 @@
   <footer>
     &copy; 2025 Manisha Mhatre. All rights reserved.
   </footer>
+ <script>
+    document.getElementById("contact").addEventListener("submit", function(event) {
+      event.preventDefault(); // Stop the default form submission (stops the FormSubmit page/link from appearing)
 
-  <!-- EmailJS Integration -->
-  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
-  <script>
-    // EmailJS Integration without User ID
-    document.getElementById("contactForm").addEventListener("submit", function(event){
-      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+      const submitButton = document.getElementById("btnsubmit");
 
-      emailjs.sendForm('service_b0lr72e', '__ejs-test-mail-service__, this)
-        .then(function() {
-          alert("Message sent successfully to Manisha.mhatre.!");
-          document.getElementById("contactForm").reset();
-        }, function(error) {
-          alert("Failed to send message: " + JSON.stringify(error));
-        });
+      btnsubmit.disabled = true; // Disable button to prevent double clicks
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("Message sent successfully to Manisha Mhatre.!");
+          form.reset(); // Resets all form fields
+          submitButton.disabled = false; // Re-enable the button
+        } else {
+          // Handle errors if the submission failed
+          alert("Oops! There was a problem submitting your form.");
+          btnsubmit.disabled = false;
+        }
+      })
+      .catch(error => {
+        alert("An error occurred: " + error.message);
+        btnsubmit.disabled = false;
+      });
     });
   </script>
-
 </body>
 </html>
+
+
+
+
+
+
 
 
 
