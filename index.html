@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manisha Mhatre | Freelance Professional</title>
-  <!-- Full URL added to Google Fonts link -->
-  <link href="fonts.googleapis.com" rel="stylesheet">
-  <!-- Full URL added to Font Awesome link -->
-  <link rel="stylesheet" href="cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-       * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Roboto', sans-serif; line-height:1.6; color:#333; background:#f5f5f5; scroll-behavior:smooth; }
     nav { position:fixed; top:0; width:100%; background:#fff; padding:10px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); z-index:1000; }
     nav ul { list-style:none; display:flex; justify-content:center; gap:40px; margin:0; padding:0; }
@@ -38,29 +36,6 @@
       header p { font-size:1rem; }
       nav ul { gap:20px; flex-wrap:wrap; }
     }
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 40px;
-      border-radius: 10px;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: #333;
-      text-decoration: none;
-    }
   </style>
 </head>
 <body>
@@ -75,8 +50,7 @@
 
   <!-- Header / Logo -->
   <header>
-    <!-- Full URL added to Image Source -->
-<img src="manisha-logo.png" class="logo" alt="Manisha Mhatre Logo">
+    <img src="manisha-logo.png" class="logo" alt="Manisha Mhatre Logo">
     <h1>Manisha Mhatre</h1>
     <p>Freelance SQL, .NET & Data Analysis Professional</p>
   </header>
@@ -88,12 +62,12 @@
       <div class="service-card">
         <i class="fas fa-code"></i>
         <h3>Web & Database Development</h3>
-        <p>.NET MVC web apps, SQL Server development, database design, and optimization.</p>
+        <p>.NET MVC web apps,API, SQL Server development, Deployment, database design, and optimization.</p>
       </div>
       <div class="service-card">
         <i class="fas fa-chart-line"></i>
         <h3>Data Analysis & Reporting</h3>
-        <p>Power BI dashboards, advanced Excel solutions, SAS analytics, and professional reporting.</p>
+        <p>Power BI dashboards, advanced Excel solutions, and professional reporting.</p>
       </div>
       <div class="service-card">
         <i class="fas fa-tools"></i>
@@ -111,8 +85,8 @@
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Me</h2>
-    <!-- Action URL is correct, method="POST" is present -->
-    <form action="https://formsubmit.co/82c26ed9347fd56f7277d6b92512bd09" method="POST">
+   
+    <form id="contactForm">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required placeholder="Your Name">
 
@@ -120,13 +94,9 @@
       <input type="email" name="email" id="email" required placeholder="Your Email">
 
       <label for="message">Message:</label>
-      <textarea name="message" id="message" rows="5" required placeholder="message"></textarea>      
-     
-     
-      
-      <input type="hidden" name="_captcha" value="false">
-      
-      <button type="submit" button ID="btnsubmit">Send</button>
+      <textarea name="message" id="message" rows="5" required placeholder="Your Message"></textarea>
+
+      <button type="submit">Send Message</button>
     </form>
   </section>
 
@@ -134,80 +104,26 @@
   <footer>
     &copy; 2025 Manisha Mhatre. All rights reserved.
   </footer>
-  <div id="successModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <img src="i.ibb.co" alt="Success Checkmark" style="width: 50px; margin-bottom: 15px;">
-    <h3>Message Sent Successfully!</h3>
-    <p>Thank you, your message has been received.</p>
-  </div>
-</div>
- <script>
-    // Get the modal element
-    var modal = document.getElementById("successModal");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
 
-    document.getElementById("contact").addEventListener("submit", function(event) {
-      event.preventDefault(); // This stops the browser from leaving the page
+  <!-- EmailJS Integration -->
+  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+  <script>
+    // EmailJS Integration without User ID
+    document.getElementById("contactForm").addEventListener("submit", function(event){
+      event.preventDefault();
 
-      const form = event.target;
-      const formData = new FormData(form);
-      const submitButton = document.getElementById("btnsubmit");
-
-      btnsubmit.disabled = true; // Disable button while sending
-
-      fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          // Success! Reset form and show the custom modal
-          form.reset(); 
-          modal.style.display = "flex"; // Show the new popup
-
-          btnsubmit.disabled = false; 
-
-        } else {
-          // Handle errors with a simple alert
-          alert("Oops! There was a problem submitting your form.");
-          submitButton.disabled = false;
-        }
-      })
-      .catch(error => {
-        alert("An error occurred: " + error.message);
-        submitButton.disabled = false;
-      });
+      emailjs.sendForm('service_b0lr72e', '__ejs-test-mail-service__, this)
+        .then(function() {
+          alert("Message sent successfully to Manisha.mhatre.!");
+          document.getElementById("contactForm").reset();
+        }, function(error) {
+          alert("Failed to send message: " + JSON.stringify(error));
+        });
     });
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-</script>
+  </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 
 
